@@ -1,70 +1,43 @@
 # CHIP-8 Emulator
 
-## Overview
-This is a CHIP-8 emulator in Rust with two components:
-
-1. **Core Emulator Logic (`chip8_core`)**: Handles CPU emulation, memory, and instruction set. Designed as a reusable crate.
-2. **Desktop Frontend (`desktop`)**: Provides a graphical interface for running CHIP-8 programs on desktop.
-
-The project supports future frontends like web-based UIs.
-
----
-
-## Project Structure
-
-```
-chip8-emulator/
-├── chip8_core/        # Core emulator logic
-├── desktop/           # Desktop frontend
-├── Cargo.toml         # Workspace config
-└── README.md          # Documentation
-```
-
----
+A simple and efficient CHIP-8 emulator written in Rust. It runs locally, allowing you to load and execute CHIP-8 ROM files seamlessly. The emulator supports most standard CHIP-8 opcodes and provides a foundation for further extensions like WebAssembly integration.
 
 ## Features
-- **64x32 Display**: Emulates CHIP-8 sprites.
-- **CPU Implementation**: Supports 35 instructions.
-- **Keyboard Input**: Maps CHIP-8's 16-key input to modern keyboards.
-- **Timers**: Includes delay and sound timers.
-- **Extensible**: Easy to add more frontends.
+- **Opcode Support**: Implements most of the CHIP-8 instruction set.
+- **Local Execution**: Load and run CHIP-8 ROMs on your desktop.
+- **Dynamic Input Handling**: Supports key presses and releases.
+- **Graphical Output**: Renders the CHIP-8 display to a virtual screen.
 
----
+## Requirements
+- Rust (Stable version)
 
 ## Getting Started
 
-### Prerequisites
-- [Rust](https://www.rust-lang.org/tools/install)
-- CHIP-8 ROM
-
----
-
-## Usage
-1. Place a CHIP-8 ROM in the `desktop` folder.
-2. Run the emulator:
-   ```bash
-   cargo run --release -- path/to/rom.ch8
-   ```
-
----
-
-## Development
-
-### Workspace
-Use the Rust workspace to build all crates:
+### Clone the Repository
 ```bash
-cargo build
+git clone https://github.com/your-username/chip8-emulator.git
+cd chip8-emulator
 ```
 
-### Dependencies
-Add dependencies in `Cargo.toml` for the respective crate.
+### Build the Emulator
+```bash
+cargo build --release
+```
 
----
+### Run a ROM
+```bash
+cargo run --release path/to/rom
+```
 
-## Roadmap
-- [ ] Sound support
-- [ ] Web-based frontend
-- [ ] Debugging tools
+Replace `path/to/rom` with the file path of the CHIP-8 ROM you want to run.
+
+## ROM Format
+CHIP-8 ROMs are binary files consisting of opcodes. These files are loaded into memory starting at address `0x200`. 
+
+## Next Steps
+The next step is integrating **WebAssembly (Wasm)** to enable running the emulator in a web browser, extending its accessibility and usability.
+
+Stay tuned for updates!
 
 ---
 
