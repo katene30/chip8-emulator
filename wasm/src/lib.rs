@@ -1,4 +1,5 @@
 use chip8_core::*;
+use js_sys::Uint8Array;
 use wasm_bindgen::prelude::*;
 use web_sys::KeyboardEvent;
 
@@ -59,5 +60,15 @@ fn key2btn(key: &str) -> Option<usize> {
         "c" => Some(0xB),
         "v" => Some(0xF),
         _ => None,
+    }
+
+    #[wasm_bindgen]
+    pub fn load_game(&mut self, data: Uint8Array) {
+        self.chip8.load(&data.to_vec());
+    }
+
+    #[wasm_bindgen]
+    pub fn draw_screen(&mut self, scale: usize) {
+        // TODO
     }
 }
