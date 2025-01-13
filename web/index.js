@@ -50,6 +50,22 @@ async function run() {
     }, false)
 
         function mainloop(chip8) {
+            // Only draw every few ticks
+            for (let i = 0; i < TICKS_PER_FRAME; i++) {
+                    chip8.tick()
+                }
+
+                chip8.tick_timers()
+
+                // Clear the canvas before drawing
+                ctx.fillStyle = "black"
+                ctx.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE)
+                // Set the draw color back to white before we render our frame
+                ctx.fillStyle = "white"
+                chip8.draw_screen(SCALE)
+                anim_frame = window.requestAnimationFrame(() => {
+                mainloop(chip8)
+                })
         }
 }
 
