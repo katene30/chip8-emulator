@@ -1,0 +1,1 @@
+/Users/katene/personal-projects/rust-projects/chip-8/wasm/target/wasm32-unknown-unknown/release/wasm.wasm: /Users/katene/personal-projects/rust-projects/chip-8/chip8_core/src/lib.rs /Users/katene/personal-projects/rust-projects/chip-8/wasm/src/lib.rs

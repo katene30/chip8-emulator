@@ -39,6 +39,16 @@ impl EmuWasm {
             self.chip8.keypress(k, pressed);
         }
     }
+
+    #[wasm_bindgen]
+    pub fn load_game(&mut self, data: Uint8Array) {
+        self.chip8.load(&data.to_vec());
+    }
+
+    #[wasm_bindgen]
+    pub fn draw_screen(&mut self, scale: usize) {
+        // TODO
+    }
 }
 
 fn key2btn(key: &str) -> Option<usize> {
@@ -60,15 +70,5 @@ fn key2btn(key: &str) -> Option<usize> {
         "c" => Some(0xB),
         "v" => Some(0xF),
         _ => None,
-    }
-
-    #[wasm_bindgen]
-    pub fn load_game(&mut self, data: Uint8Array) {
-        self.chip8.load(&data.to_vec());
-    }
-
-    #[wasm_bindgen]
-    pub fn draw_screen(&mut self, scale: usize) {
-        // TODO
     }
 }
