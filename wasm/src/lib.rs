@@ -14,4 +14,19 @@ impl EmuWasm {
         chip8: Emu::new(),
         }
     }
+
+    #[wasm_bindgen]
+    pub fn tick(&mut self) {
+        self.chip8.tick();
+    }
+
+    #[wasm_bindgen]
+    pub fn tick_timers(&mut self) {
+        self.chip8.tick_timers();
+    }
+
+    #[wasm_bindgen]
+    pub fn reset(&mut self) {
+        self.chip8.reset();
+    }
 }
