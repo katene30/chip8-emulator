@@ -12,3 +12,45 @@ const ctx = canvas.getContext("2d")
 ctx.fillStyle = "black"
 ctx.fillRect(0, 0, WIDTH * SCALE, HEIGHT * SCALE)
 const input = document.getElementById("fileinput")
+
+async function run() {
+    await init()
+    let chip8 = new wasm.EmuWasm()
+
+    document.addEventListener("keydown", function(evt) {
+        chip8.keypress(evt, true)
+    })
+
+    document.addEventListener("keyup", function(evt) {
+        chip8.keypress(evt, false)
+    })
+
+    input.addEventListener("change", function(evt) {
+        // Stop previous game from rendering, if one exists
+        if (anim_frame != 0) {
+            window.cancelAnimationFrame(anim_frame)
+        }
+
+        let file = evt.target.files[0]
+        if (!file) {
+            alert("Failed to read file")
+            return
+        }
+        // Load in game as Uint8Array, send to .wasm, start main loop
+        let fr = new FileReader()
+        fr.onload = function(e) {
+            let buffer = fr.result
+            const rom = new Uint8Array(buffer)
+            chip8.reset()
+            chip8.load_game(rom)
+            mainloop(chip8)
+        }
+
+        fr.readAsArrayBuffer(file)
+    }, false)
+
+        function mainloop(chip8) {
+        }
+}
+
+run().catch(console.error)
